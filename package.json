@@ -1,0 +1,74 @@
+{
+  "name": "react-router-use-history",
+  "version": "1.0.0",
+  "source": "./src/index.ts",
+  "main": "./dist/index.umd.js",
+  "module": "./dist/index.esm.js",
+  "types": "./dist/src/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "module": "./dist/index.esm.js",
+      "import": "./dist/index.esm.mjs",
+      "default": "./dist/index.umd.js"
+    }
+  },
+  "sideEffects": false,
+  "files": [
+    "src",
+    "dist"
+  ],
+  "description": "useHistory api in react router v6",
+  "keywords": [
+    "react",
+    "use-history",
+    "react-router",
+    "react-router-history"
+  ],
+  "homepage": "https://github.com/fz6m/react-router-use-history#README",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fz6m/react-router-use-history"
+  },
+  "license": "MIT",
+  "author": "fz6m",
+  "scripts": {
+    "prepare": "husky install",
+    "precompile": "rimraf dist",
+    "compile": "microbundle build -f modern,umd --globals react=React --jsx React.createElement",
+    "postcompile": "cp dist/index.esm.mjs dist/index.esm.js && cp dist/index.esm.mjs.map dist/index.esm.js.map",
+    "build": "pnpm compile",
+    "tsc:check": "tsc --noEmit",
+    "format": "prettier --cache --parser=typescript --write ./src/**/*.{ts,tsx}",
+    "prepublishOnly": "pnpm build",
+    "push": "npm publish --registry=https://registry.npmjs.com/"
+  },
+  "devDependencies": {
+    "@remix-run/router": "^1.0.0",
+    "@types/node": "^18.7.18",
+    "@types/react": "^18.0.20",
+    "@types/use-sync-external-store": "^0.0.3",
+    "history": "^5.3.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "microbundle": "^0.15.1",
+    "prettier": "^2.7.1",
+    "react": "^18.2.0",
+    "react-router-dom": "^6.4.0",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.8.3"
+  },
+  "peerDependencies": {
+    "react": ">=17.0.0",
+    "react-router-dom": "^6.0.0"
+  },
+  "dependencies": {
+    "use-sync-external-store": "^1.2.0"
+  },
+  "lint-staged": {
+    "*.ts?(x)": [
+      "prettier --cache --parser=typescript --write"
+    ]
+  }
+}

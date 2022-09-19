@@ -1,0 +1,36 @@
+{
+  "name": "react-app",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "xn dev",
+    "build": "xn build"
+  },
+  "dependencies": {
+    "history": "^5.3.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.7.18",
+    "@types/react": "^18.0.20",
+    "@types/react-dom": "^18.0.6",
+    "@types/react-router-dom": "^5.3.3",
+    "@xn-sakina/meta": "^2.0.0",
+    "react-router-use-history": "file:../",
+    "typescript": "^4.8.3"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
