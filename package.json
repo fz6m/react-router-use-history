@@ -16,7 +16,6 @@
   },
   "sideEffects": false,
   "files": [
-    "src",
     "dist"
   ],
   "description": "useHistory api in react router v6",
