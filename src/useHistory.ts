@@ -93,20 +93,22 @@ export const useHistory = (): History => {
         DATA_ROUTER_CONTEXT
       ] as typeof ReactRouterDOM.UNSAFE_DataRouterContext
     )
-    const navigator = context?.navigator
-    const state = context?.router?.state
-    const subscribe = context?.router?.subscribe
+    if (context) {
+      const navigator = context?.navigator
+      const state = context?.router?.state
+      const subscribe = context?.router?.subscribe
 
-    return {
-      get location() {
-        return state?.location
-      },
-      get action() {
-        return state?.historyAction
-      },
-      listen: subscribe,
-      ...navigator,
-    } as History
+      return {
+        get location() {
+          return state?.location
+        },
+        get action() {
+          return state?.historyAction
+        },
+        listen: subscribe,
+        ...navigator,
+      } as History
+    }
   }
 
   // otherwise, use Browser Router
