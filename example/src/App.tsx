@@ -12,7 +12,8 @@ import {
   Outlet,
 } from 'react-router-dom'
 import { useEffect } from 'react'
-import { createBrowserHistory } from 'history'
+// import { createBrowserHistory } from 'history'
+import { createBrowserHistory } from '@remix-run/router'
 
 function A() {
   const history = useHistory()
@@ -108,7 +109,8 @@ function BrowserRouterExample() {
   )
 }
 
-const userHistory = createBrowserHistory()
+const userHistory = createBrowserHistory({ v5Compat: true })
+// const userHistory = createBrowserHistory()
 function CustomHistoryWithBrowserRouterExample() {
   return (
     <BrowserRouter history={userHistory}>
@@ -127,8 +129,8 @@ function App() {
   return (
     <div>
       {/* <BrowserRouterExample /> */}
-      {/* <CustomHistoryWithBrowserRouterExample /> */}
-      <DataBrowserRouterExample />
+      <CustomHistoryWithBrowserRouterExample />
+      {/* <DataBrowserRouterExample /> */}
     </div>
   )
 }

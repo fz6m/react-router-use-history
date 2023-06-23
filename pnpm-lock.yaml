@@ -54,6 +54,9 @@ importers:
 
   example:
     dependencies:
+      '@remix-run/router':
+        specifier: ^1.6.3
+        version: registry.npmjs.org/@remix-run/router@1.6.3
       history:
         specifier: ^5.3.0
         version: registry.npmjs.org/history@5.3.0
@@ -13911,7 +13914,7 @@ packages:
       react: ^18.2.0
     dependencies:
       loose-envify: registry.npmjs.org/loose-envify@1.4.0
-      react: 18.2.0
+      react: registry.npmjs.org/react@18.2.0
       scheduler: registry.npmjs.org/scheduler@0.23.0
 
   registry.npmjs.org/react-error-overlay@6.0.11:
@@ -13938,7 +13941,7 @@ packages:
       react-dom: '>=16.8'
     dependencies:
       '@remix-run/router': registry.npmjs.org/@remix-run/router@1.6.3
-      react: 18.2.0
+      react: registry.npmjs.org/react@18.2.0
       react-dom: registry.npmjs.org/react-dom@18.2.0(react@18.2.0)
       react-router: registry.npmjs.org/react-router@6.13.0(react@18.2.0)
 
@@ -13967,7 +13970,7 @@ packages:
       react: '>=16.8'
     dependencies:
       '@remix-run/router': registry.npmjs.org/@remix-run/router@1.6.3
-      react: 18.2.0
+      react: registry.npmjs.org/react@18.2.0
 
   registry.npmjs.org/react-router@6.3.0(react@18.2.0):
     resolution: {integrity: sha512-7Wh1DzVQ+tlFjkeo+ujvjSqSJmkt1+8JO+T5xklPlgrh70y7ogx75ODRW0ThWhY7S+6yEDks8TYrtQe/aoboBQ==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/react-router/-/react-router-6.3.0.tgz}
@@ -13988,7 +13991,6 @@ packages:
     engines: {node: '>=0.10.0'}
     dependencies:
       loose-envify: registry.npmjs.org/loose-envify@1.4.0
-    dev: false
 
   registry.npmjs.org/read-yaml-file@1.1.0:
     resolution: {integrity: sha512-VIMnQi/Z4HT2Fxuwg5KrY174U1VdUIASQVWXXyqtNRtxSr9IYkn1rsI6Tb6HsrHCmB7gVpNwX6JxPTHcH6IoTA==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/read-yaml-file/-/read-yaml-file-1.1.0.tgz}
