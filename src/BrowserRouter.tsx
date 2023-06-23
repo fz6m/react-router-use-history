@@ -38,8 +38,9 @@ export function BrowserRouter({
   // if `v5Compat: true`, cannot add more listeners
   // so we manage the subscriptions manually
   const subscriptionRef = useRef<Set<BrowserRouterListener>>(new Set())
-  let historyRef = useRef<BrowserHistory>()
+  let historyRef = useRef<BrowserHistory>(null!)
   if (historyRef.current == null) {
+    // @ts-ignore
     historyRef.current =
       specifiedHistory || createBrowserHistory({ window, v5Compat: true })
   }
