@@ -126,9 +126,9 @@ function DataBrowserRouterExample() {
 function App() {
   return (
     <div>
-      <BrowserRouterExample />
+      {/* <BrowserRouterExample /> */}
       {/* <CustomHistoryWithBrowserRouterExample /> */}
-      {/* <DataBrowserRouterExample /> */}
+      <DataBrowserRouterExample />
     </div>
   )
 }

@@ -19,7 +19,7 @@
     "@types/react-dom": "^18.2.6",
     "@types/react-router-dom": "^5.3.3",
     "@xn-sakina/meta": "^3.5.0",
-    "react-router-use-history": "file:../",
+    "react-router-use-history": "workspace:*",
     "typescript": "^5.1.3"
   },
   "browserslist": {
