@@ -10,9 +10,9 @@
 
 ## Usage
 
-### Router created with `createBrowserRouter` and `<RouterProvider>`
+### Router created with `createBrowserRouter` and `<RouterProvider />` (Data Browser Router)
 
-> React router >= `v6.4`
+> React router >= `v6.4.0`
 
 ```ts
 import { useHistory } from 'react-router-use-history'
@@ -24,9 +24,9 @@ function Page() {
 }
 ```
 
-### Router created with `<BrowserRouter>`
+### Router created with `<BrowserRouter />` (Legacy Browser Router)
 
-> React router >= `v6`
+> React router >= `v6.0.0`
 
 1. Replace `BrowserRouter` :
 
@@ -84,6 +84,10 @@ You can define your own `history` outside of the react router :
     import { createBrowserHistory } from 'history'
 
     export const history = createBrowserHistory()
+
+    // or
+    // import { createBrowserHistory } from '@remix-run/router'
+    // export const history = createBrowserHistory({ v5Compat: true })
     ```
 
 2. Replace `<BrowserRouter>` and inject `history` instance 
