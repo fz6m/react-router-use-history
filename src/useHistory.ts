@@ -1,27 +1,39 @@
 import { useContext } from 'react'
-import {
-  UNSAFE_DataRouterContext,
-  UNSAFE_NavigationContext,
-} from 'react-router-dom'
+import * as ReactRouterDOM from 'react-router-dom'
 import { type History as RemixHistory } from '@remix-run/router'
 import {
   type BrowserRouterHistoryState,
   SubscriptionContext,
 } from './BrowserRouter'
 
+// HACK webpack
+const DATA_ROUTER_CONTEXT = 'UNSAFE_DataRouterContext'
+const NAVIGATION_CONTEXT = 'UNSAFE_NavigationContext'
+
 /**
  * data browser router history hooks
  */
 export const useBrowserRouterHistory = () => {
-  const navigator = useContext(UNSAFE_NavigationContext).navigator
+  if (!(NAVIGATION_CONTEXT in ReactRouterDOM)) {
+    if (process.env.NODE_ENV === 'development') {
+      throw new Error(
+        `[react-router-use-history]: only support react-router-dom >= 6`
+      )
+    }
+  }
+
+  const navigator = useContext(
+    ReactRouterDOM.UNSAFE_NavigationContext
+  ).navigator
   const context = useContext(SubscriptionContext)
   const listen: Listner = (listener) => {
-    // TODO: warning if context is null
-    // if (!context) {
-    //   console.error(
-    //     `[react-router-use-history]: You should use import { BrowserRouter } from 'react-router-use-history', otherwise 'history.listen' will not working.`
-    //   )
-    // }
+    if (!context) {
+      if (process.env.NODE_ENV === 'development') {
+        throw new Error(
+          `[react-router-use-history]: You should use import { BrowserRouter } from 'react-router-use-history', otherwise 'history.listen' will not working.`
+        )
+      }
+    }
 
     context?.ref.current.add(listener)
     return () => {
@@ -38,7 +50,7 @@ type ExtractContextValueType<C = any> = C extends React.Context<infer U>
   ? U
   : never
 type DataRouterContextObject = ExtractContextValueType<
-  typeof UNSAFE_DataRouterContext
+  typeof ReactRouterDOM.UNSAFE_DataRouterContext
 >
 type Listen = NonNullable<DataRouterContextObject>['router']['subscribe']
 
@@ -71,12 +83,10 @@ type HistoryListen = {
 export type History = Omit<RemixHistory, 'listen'> & HistoryListen
 
 export const useHistory = (): History => {
-  // compatible < 6.4
-  const context =
-    UNSAFE_DataRouterContext && useContext(UNSAFE_DataRouterContext)
-
+  // first compatible < 6.4
   // Data Router
-  if (context) {
+  if (DATA_ROUTER_CONTEXT in ReactRouterDOM) {
+    const context = useContext(ReactRouterDOM.UNSAFE_DataRouterContext)
     const navigator = context?.navigator
     const state = context?.router?.state
     const subscribe = context?.router?.subscribe
@@ -93,6 +103,6 @@ export const useHistory = (): History => {
     } as History
   }
 
-  // Browser Router
+  // otherwise, use Browser Router
   return useBrowserRouterHistory()
 }
