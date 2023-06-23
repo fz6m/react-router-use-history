@@ -7,8 +7,8 @@ import {
 } from './BrowserRouter'
 
 // HACK webpack
-const DATA_ROUTER_CONTEXT = 'UNSAFE_DataRouterContext'
-const NAVIGATION_CONTEXT = 'UNSAFE_NavigationContext'
+const DATA_ROUTER_CONTEXT = 'UNSAFE_'.concat('DataRouterContext')
+const NAVIGATION_CONTEXT = 'UNSAFE_'.concat('NavigationContext')
 
 /**
  * data browser router history hooks
@@ -23,7 +23,9 @@ export const useBrowserRouterHistory = () => {
   }
 
   const navigator = useContext(
-    ReactRouterDOM.UNSAFE_NavigationContext
+    (ReactRouterDOM as any)[
+      NAVIGATION_CONTEXT
+    ] as typeof ReactRouterDOM.UNSAFE_NavigationContext
   ).navigator
   const context = useContext(SubscriptionContext)
   const listen: Listner = (listener) => {
@@ -86,7 +88,11 @@ export const useHistory = (): History => {
   // first compatible < 6.4
   // Data Router
   if (DATA_ROUTER_CONTEXT in ReactRouterDOM) {
-    const context = useContext(ReactRouterDOM.UNSAFE_DataRouterContext)
+    const context = useContext(
+      (ReactRouterDOM as any)[
+        DATA_ROUTER_CONTEXT
+      ] as typeof ReactRouterDOM.UNSAFE_DataRouterContext
+    )
     const navigator = context?.navigator
     const state = context?.router?.state
     const subscribe = context?.router?.subscribe
